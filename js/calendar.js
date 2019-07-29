@@ -6,22 +6,24 @@
         var tips = {
             eventRender: function (event, element) {
                 if (event.imageurl) {
-                    element.find("div.fc-content").prepend("<img src='" + event.imageurl +"' height='48'>");
+                    element.find("div.fc-content").prepend("<img src='" + event.imageurl + "' style='width: 100%'>");
                 }
                 element.qtip({
                     content: {
                         title: {text: event.title},
                         text: event.excerpt
                     },
-                    style: { classes: 'qtip-blue' },
-                    position: { my: 'bottom center',
-                                at: 'top center'}
+                    style: {classes: 'qtip-blue'},
+                    position: {
+                        my: 'bottom center',
+                        at: 'top center'
+                    }
                 });
             }
         };
 
 
-        $('.wfea-calendar.sametab').fullCalendar($.extend(WFEACalendar, tips));
+        $('.wfea-calendar-img-cal.sametab').fullCalendar($.extend(WFEACalendarImg, tips));
 
         var newtab = {
             eventClick: function (event) {
@@ -32,7 +34,7 @@
             }
         };
 
-        $('.wfea-calendar.newtab').fullCalendar($.extend(WFEACalendar, newtab));
+        $('.wfea-calendar-img-cal.newtab').fullCalendar($.extend(WFEACalendarImg, newtab));
     });
 
 })(jQuery);
