@@ -10,6 +10,7 @@ wp_enqueue_script( $data->plugin_name . '-locale' );
 wp_enqueue_style( $data->plugin_name . '-fullcalendar-css' );
 wp_enqueue_style( $data->plugin_name . '-fullcalendar-print-css' );
 wp_enqueue_style( $data->plugin_name . '-qtip-css' );
+wp_enqueue_style( 'wfea-image-calendar-style' );
 
 $caloptions = array(
 	'header'              => array(
