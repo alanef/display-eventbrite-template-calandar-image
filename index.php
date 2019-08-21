@@ -4,13 +4,14 @@
 Plugin Name: Custom Template for Eventbrite Display Images in Calendar
 Plugin URI: https://github.com/alanef/display-eventbrite-template-calandar-image
 Description: Custom Template for Eventbrite Display Images in Calendar
-Version: 1.2
+Version: 1.3
 Author: alan
 Author URI: https://fullworks.net
 License: GPL2
 
 No warranty, no unpaid support
 
+v 1.3 = removed week view time slots
 v 1.2 = added a style sheet
 v 1.1 = change class to avoid clashes  - added alt to image
 

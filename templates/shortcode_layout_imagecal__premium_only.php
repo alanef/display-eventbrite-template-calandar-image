@@ -30,7 +30,8 @@ printf( '<section %1$s class="wfea %2$s">',
 
 
 if ( false !== $data->events && $data->events->have_posts() ) :
-
+	$earliest_start = 86400;
+	$latest_end     = 0;
 
 // add events
 	$i = 0;
@@ -41,12 +42,24 @@ if ( false !== $data->events && $data->events->have_posts() ) :
 		$i ++;
 		$caloptions['events'][] = array(
 			'imageurl'         => esc_url( $data->events->post->logo_url ),
-			'start'            => date('Y-m-d', strtotime(eventbrite_event_start()->local)),
+			'start'   => eventbrite_event_start()->local,
+			'end'     => eventbrite_event_end()->local,
 			'excerpt'          => wp_trim_words( get_the_excerpt(), 20, ' &hellip;' ),
 			'url'              => esc_url( eventbrite_event_eb_url( ( $data->args['tickets'] ) ? '#tickets' : '' ) )
 		);
-
+		$parsed                 = date_parse( eventbrite_event_start()->local );
+		$start                  = $parsed['hour'] * 3600 + $parsed['minute'] * 60 + $parsed['second'];
+		$parsed                 = date_parse( eventbrite_event_end()->local );
+		$end                    = $parsed['hour'] * 3600 + $parsed['minute'] * 60 + $parsed['second'];
+		if ( $start < $earliest_start ) {
+			$earliest_start = $start;
+		}
+		if ( $end > $latest_end ) {
+			$latest_end = $end;
+		}
 	endwhile;
+	$caloptions['minTime'] = gmdate( "H:i:s", $earliest_start );
+	$caloptions['maxTime'] = gmdate( "H:i:s", $latest_end );
 
 
 endif;
